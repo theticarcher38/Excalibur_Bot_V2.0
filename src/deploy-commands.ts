@@ -13,11 +13,11 @@ const token = process.env.TOKEN;
 const commands: any[] = []
 
 fs.readdirSync('./commands/').forEach((dir: any) => {
-    const commandFiles = fs.readdirSync(`./commands/${dir}`).filter((file: string) => file.endsWith('.js'));
+    const commandFiles = fs.readdirSync(`./commands/${dir}`).filter((file: string) => file.endsWith('.ts'));
 
     for (const file of commandFiles) {
         const command = require(`./commands/${dir}/${file}`);
-        console.info(`registered ${command} of ${dir}`)
+        console.info(`${file.replace(/\.[^/.]+$/, "")} of ${dir} successfully registered.`);
         commands.push(command.data.toJSON());
     }
 })
