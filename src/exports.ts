@@ -1,0 +1,1 @@
+export const { SlashCommandBuilder } = require('@discordjs/builders');
