@@ -17,10 +17,12 @@ fs.readdirSync('./commands/').forEach((dir: any) => {
 
     for (const file of commandFiles) {
         const command = require(`./commands/${dir}/${file}`);
-        console.info(`${file.replace(/\.[^/.]+$/, "")} of ${dir} successfully registered.`);
+        // console.info(`${file.replace(/\.[^/.]+$/, "")} of ${dir} successfully registered.`);
         commands.push(command.data.toJSON());
     }
 })
+
+console.table(commands);
 
 
 const rest = new REST({ version: '9' }).setToken(token);
