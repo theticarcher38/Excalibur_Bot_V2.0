@@ -5,6 +5,7 @@ const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const dotenv = require('dotenv');
 dotenv.config({ path: "./config/.env" });
+const config = require('./config/config.json');
 const ascii = require('ascii-table')
 
 let table_development = new ascii('Development Commands');
@@ -12,8 +13,8 @@ let table_build = new ascii('Build Commands')
 table_development.setHeading("Name", "Module", "Description", "Options", "Permissions");
 table_build.setHeading("Name", "module", "Description", "Options", "Permissions");
 
-const clientId = process.env.CLIENT_ID;
-const guildId = process.env.GUILD_ID;
+const clientId = config.CLIENT_ID;
+const guildId = config.GUILD_ID;
 const token = process.env.TOKEN;
 
 const commands: any[] = []

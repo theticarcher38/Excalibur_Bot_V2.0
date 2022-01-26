@@ -3,8 +3,9 @@ const { Client, Collection, Intents } = require('discord.js');
 const dotenv = require('dotenv');
 const fs = require('fs');
 dotenv.config({ path: "./config/.env" });
+const config = require('./config/config.json');
 const token = process.env.TOKEN;
-const guildId = process.env.GUILD_ID;
+const guildId = config.GUILD_ID;
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
