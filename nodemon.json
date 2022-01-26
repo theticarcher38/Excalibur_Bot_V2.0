@@ -1,6 +1,6 @@
 {
     "watch": ["src"],
-    "ext": ".ts,.js",
+    "ext": ".ts,.js,",
     "ignore": [],
     "exec": "cls && cd ./src && npx ts-node ./deploy-commands.ts && npx ts-node ./bot.ts && cd ../"
 }

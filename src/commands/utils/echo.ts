@@ -7,12 +7,12 @@ module.exports = {
         .setName('echo')
         .setDescription('Replies with user input')
         .addStringOption((option: { setName: (arg0: string) => any; }) =>
-            option.setName('input')
+            option.setName('input-string')
                 .setDescription('The input to echo back')
                 .setRequired(true)),
         
     async execute(interaction: any) {
-        const input = interaction.options.getStringOption('input');
+        const input = interaction.options.getString('input-string');
         let embed = new MessageEmbed()
             .setTitle('Echo')
             .setAuthor(interaction.member.displayName)

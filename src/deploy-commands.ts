@@ -5,6 +5,12 @@ const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const dotenv = require('dotenv');
 dotenv.config({ path: "./config/.env" });
+const ascii = require('ascii-table')
+
+let table_development = new ascii('Development Commands');
+let table_build = new ascii('Build Commands')
+table_development.setHeading("Name", "Description", "Options", "Permissions");
+table_build.setHeading("Name", "Description", "Options", "Permissions");
 
 const clientId = process.env.CLIENT_ID;
 const guildId = process.env.GUILD_ID;
@@ -19,14 +25,32 @@ fs.readdirSync('./commands/').forEach((dir: any) => {
         const command = require(`./commands/${dir}/${file}`);
         // console.info(`${file.replace(/\.[^/.]+$/, "")} of ${dir} successfully registered.`);
         commands.push(command.data.toJSON());
+            table_development.addRow(command.data.name, command.data.description, command.data.options, command.data.permissions);
+            table_build.addRow(command.data.name, command.data.description, command.data.options, command.data.permissions);
     }
 })
-
-console.table(commands);
 
 
 const rest = new REST({ version: '9' }).setToken(token);
 
-rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commands })
-    .then(() => console.info(`[RegistryLogs] All commands successfully registered.`))
-    .catch(console.err);
+(async () => {
+    try {
+        if (!guildId) {
+            await rest.put(
+                Routes.applicationCommands(clientId), {
+                    body: commands
+                },
+            );
+            console.info(table_build.toString());
+        } else {
+            await rest.put(
+                Routes.applicationGuildCommands(clientId, guildId), {
+                    body: commands
+                },
+            );
+            console.info(table_development.toString());
+        }
+    } catch (err) {
+        if (err) console.err(err);
+    }
+})();
