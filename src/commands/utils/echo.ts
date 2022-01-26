@@ -8,7 +8,7 @@ module.exports = {
         .setDescription('Replies with user input')
         .addStringOption((option: { setName: (arg0: string) => any; }) =>
             option.setName('input-string')
-                .setDescription('The input to echo back')
+                .setDescription('input to echo back')
                 .setRequired(true)),
         
     async execute(interaction: any) {
