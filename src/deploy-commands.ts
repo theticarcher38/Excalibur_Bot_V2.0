@@ -27,7 +27,7 @@ fs.readdirSync('./commands/').forEach((dir: any) => {
         // console.info(`${file.replace(/\.[^/.]+$/, "")} of ${dir} successfully registered.`);
         commands.push(command.data.toJSON());
             table_development.addRow(command.data.name.toUpperCase(), dir.toUpperCase(), command.data.description, command.data.options, command.data.permissions);
-            table_build.addRow(command.data.name.toUpperCase(), dir.toUpperCase(), command.data.description, command.data.options.description, command.data.permissions);
+            table_build.addRow(command.data.name.toUpperCase(), dir.toUpperCase(), command.data.description, command.data.options, command.data.permissions);
     }
 })
 

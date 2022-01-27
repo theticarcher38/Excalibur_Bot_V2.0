@@ -7,7 +7,7 @@ const config = require('./config/config.json');
 const token = process.env.TOKEN;
 const guildId = config.GUILD_ID;
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+export const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 client.commands = new Collection();
 
